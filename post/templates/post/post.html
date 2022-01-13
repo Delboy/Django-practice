@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>This is the posts page</h1>
+
+{{ posts }}
+
+{% for post in posts %}
+
+    <p>{{ post.title }}</p>
+    <p>{{ post.description }}</p>
+    <p>{{ post.author }}</p>
+    <p>{{ post.published_on }}</p>
+    <img src="{{ post.image }}"  width="300px">
+
+    
+
+{% endfor %}
+
+
+
+{% endblock %}
