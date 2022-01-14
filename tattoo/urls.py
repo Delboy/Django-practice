@@ -16,13 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from pages.views import view_home_page, view_contact_page
-from post.views import view_posts
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
-    path('', view_home_page, name='home'),
     path('contact/', view_contact_page, name='contact'),
-    path('posts/', view_posts, name='post'),
+    path('', include('post.urls'), name='post_urls'),
 ]

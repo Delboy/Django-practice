@@ -1,10 +1,10 @@
 from django.shortcuts import render
+from django.views import generic
 from .models import Post
 # Create your views here.
 
-def view_posts(request):
-    posts = Post.objects.all()
-    context = {
-        'posts': posts
-    }
-    return render(request, 'post/post.html', context)
+class PostList(generic.ListView):
+    model = Post
+    queryset = Post.objects.filter(is_vegan=True)
+    template_name = "index.html"
+    paginate_by = 6
