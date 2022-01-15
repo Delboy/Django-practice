@@ -22,7 +22,6 @@ from pages.views import view_home_page, view_contact_page
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
-    path('contact/', view_contact_page, name='contact'),
     path('', include('post.urls'), name='post_urls'),
     path('accounts/', include('allauth.urls')),
 ]

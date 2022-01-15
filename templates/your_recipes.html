@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+
+
+
+{% block content %}
+<div  class=" row d-flex justify-content-center align-content-center "  >  <a href="{% url 'add_recipes' %}" class="btn btn-primary col-3" style="margin-top: 1.3em;">Add Recipe</a>  </div>
+
+<div class="container-fluid">
+    <div class="row">
+
+
+        <div class="col-12 mt-3 left">
+            <div class="row">
+                {% for post in posts %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="image-container">
+                                {% if "placeholder" in post.image.url %}
+                                <img class="card-img-top"
+                                    src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
+                                {% else %}
+                                <img class="card-img-top" src=" {{ post.image.url }}">
+                                {% endif %}
+                                <div class="image-flash">
+                                    <p class="author">Author: {{ post.author }}</p>
+                                </div>
+                            </div>
+
+                            <h2 class="card-title">{{ post.title }}</h2>
+                            <p class="card-text">{{ post.description|safe }}</p>
+
+                            </a>
+                            <hr />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endfor %}
+{% endblock %}
