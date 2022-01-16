@@ -99,10 +99,8 @@ def add_recipes(request):
         form = RecipeForm(request.POST or None)
         if form.is_valid():
             form.instance.author = request.user
-            
-            
             form.save()
-        return redirect('add_recipes')
+        return redirect('your_recipes')
     form = RecipeForm()
     context = {
         'form': form
