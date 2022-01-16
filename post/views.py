@@ -2,16 +2,16 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.utils.text import slugify
 from django.contrib import messages
 from .models import Post
 from .forms import CommentForm, RecipeForm
+
 # Create your views here.
 
 
 class PostList(generic.ListView):
     model = Post
-    queryset = Post.objects.filter(is_vegan=True)
+    queryset = Post.objects.all()
     template_name = "index.html"
     paginate_by = 6
 
@@ -85,22 +85,35 @@ class PostLike(View):
 
 
 
-def users_recipe_list(request):
-    posts = Post.objects.filter(author=request.user)
-    context = {
-        "posts": posts
-    }
-    return render(request, 'your_recipes.html', context)
+class UsersRecipeList(generic.ListView):
+    def get(self, request):
+        posts = Post.objects.filter(author=request.user)
+        paginate_by = 6
+        context = {
+            "posts": posts,
+        }
+        return render(request, 'your_recipes.html', context)
+
+
+# def users_recipe_list(request):
+#     posts = Post.objects.filter(author=request.user)
+
+#     context = {
+#         "posts": posts,
+#     }
+
+#     return render(request, 'your_recipes.html', context)
 
 
 
 def add_recipes(request):
+    
     if request.method == "POST":
-        form = RecipeForm(request.POST or None)
+        form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
             form.instance.author = request.user
             form.save()
-        return redirect('your_recipes')
+            return redirect('your_recipes')
     form = RecipeForm()
     context = {
         'form': form
@@ -108,17 +121,12 @@ def add_recipes(request):
 
     return render(request, 'add_recipe.html', context)
 
+    
 
-    # if request.method == "POST":
-    #     form = RecipeForm(request.POST)
-    #     if form.is_valid():
-    #         recipe = form.save(commit=False)
-    #         form.user = request.user
-    #         form.save()
-    #         return redirect('your_recipes.html')
-    # else:
-    #     form = RecipeForm()
-    #     context = {
-    #         'form': form
-    #     }
-    # return render(request, 'add_recipe.html', context)
+    
+
+   
+
+
+
+
