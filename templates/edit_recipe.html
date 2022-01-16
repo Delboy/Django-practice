@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+{% load cloudinary %}
+
+<h1> Edit Recipe </h1>
+
+<div class="row">
+    <div class="col-md-8 mt-3 offset-md-2">
+        <form class="signup" id="add_recipe_form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-signup right" type="submit" value="Save">Update Recipe &raquo;</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
