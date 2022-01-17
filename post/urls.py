@@ -8,4 +8,5 @@ urlpatterns = [
     path('<slug:slug>/', views.PostDetail.as_view(), name="post_detail"),
     path('like/<slug:slug>', views.PostLike.as_view(), name="post_like"),
     path('edit_recipe/<str:pk>', views.edit_recipe, name='edit_recipe'),
+    path('delete_recipe/<str:pk>', views.delete_recipe, name='delete_recipe'),
 ]

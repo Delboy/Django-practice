@@ -139,11 +139,9 @@ def edit_recipe(request, pk):
     return render(request, 'edit_recipe.html', context)
 
     
+def delete_recipe(request, pk):
 
-    
+    recipe = get_object_or_404(Post, id=pk)
+    recipe.delete()
 
-   
-
-
-
-
+    return redirect(reverse('your_recipes'))
