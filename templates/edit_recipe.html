@@ -4,7 +4,11 @@
 
 {% load cloudinary %}
 
+{% if user.is_authenticated and user.id == post.author.id %}
+
 <h1> Edit Recipe </h1>
+
+
 
 <div class="row">
     <div class="col-md-8 mt-3 offset-md-2">
@@ -15,6 +19,13 @@
         </form>
     </div>
 </div>
+
+
+{% else %}
+
+<h3> Sorry, you must be signed in to do that! </h3>
+
+{% endif %}
 
 {% endblock %}
 

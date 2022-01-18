@@ -18,3 +18,4 @@ class RecipeForm(forms.ModelForm):
             'ingredients': SummernoteWidget(),
             'method': SummernoteWidget(),
         }
+
