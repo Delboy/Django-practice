@@ -56,9 +56,15 @@
                         <a class="nav-link" href="{% url 'vegan_recipes' %}">Vegan Recipes</a>
                     </li>
                 </ul>
-                <span class="navbar-text text-muted">
-                    adventures of a software developer
-                </span>
+                <form class="d-flex" method=POST action="{% url 'search_recipes' %}">
+
+                    {% csrf_token %}
+
+                    <input class="form-control me-2" type="search" 
+                    placeholder="Search Recipes" aria-label="Search"
+                    name="searched">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button> 
+                </form>
             </div>
         </div>
     </nav>

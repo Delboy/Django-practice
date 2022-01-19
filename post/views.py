@@ -1,12 +1,10 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView
 from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Post
 from .forms import CommentForm, RecipeForm
-from django.contrib.auth import get_user_model
 
 # Create your views here.
 
@@ -111,57 +109,20 @@ class VeganRecipeList(generic.ListView):
         return render(request, 'vegan_recipes.html', context)
 
 
-
-# def add_recipes(request):
-    
-    # if request.method == "POST":
-    #     form = RecipeForm(request.POST, request.FILES)
-    #     if form.is_valid():
-    #         form.instance.author = request.user
-    #         form.save()
-    #         return redirect('your_recipes')
-    # form = RecipeForm()
-    # context = {
-    #     'form': form
-    # }
-
-#     return render(request, 'add_recipe.html', context)
-
-
-# def edit_recipe(request, pk):
-    
-#     recipe = Post.objects.get(id=pk)
-#     form = RecipeForm(instance=recipe)
-
-#     if request.method == "POST":
-#         form = RecipeForm(request.POST, request.FILES, instance=recipe)
-#         if form.is_valid():
-#             form.instance.author = request.user
-#             form.save()
-#             return redirect('your_recipes')
-        
-
-#     context = {'form':form}
-#     return render(request, 'edit_recipe.html', context)
 class AddPostView(CreateView):
     model = Post
-    form = RecipeForm
-    template_name = 'add_recipe.html'
-    fields = ['title', 'description', 'ingredients', 'method', 'is_vegan', 'image']
+    form_class = RecipeForm
+    template_name = 'add_recipes.html'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
     
-
-    
-
-
 class UpdatePostView(UpdateView):
     model = Post
     template_name = 'edit_recipe.html'
-    fields = ['title', 'description', 'ingredients', 'method', 'is_vegan', 'image']
+    form_class = RecipeForm
 
     
 def delete_recipe(request, pk):
@@ -171,3 +132,11 @@ def delete_recipe(request, pk):
 
     return redirect(reverse('your_recipes'))
 
+
+def search_recipes(request):
+    if request.method == "POST":
+        searched = request.POST.get('searched')
+        posts = Post.objects.filter(title__contains=searched)
+        return render(request, 'search_recipes.html', {'searched': searched, 'posts':posts})
+    else:
+        return render(request, 'search_recipes.html')

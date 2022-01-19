@@ -29,10 +29,10 @@
                                     <p class="author">Author: {{ post.author }}</p>
                                 </div>
                             </div>
-
-                            <h2 class="card-title">{{ post.title }}</h2>
-                            <p class="card-text">{{ post.description|safe }}</p>
-
+                            <a href="{% url 'post_detail' post.slug %}" class="post-link">
+                                <h2 class="card-title">{{ post.title }}</h2>
+                                <p class="card-text">{{ post.description|safe }}</p>
+                            </a>
                             </a>
                             <hr />
                             <a href="{% url 'edit_recipe' post.id %}"><button>Edit</button></a>

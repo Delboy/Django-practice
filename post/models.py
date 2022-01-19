@@ -5,6 +5,8 @@ from django.utils.text import slugify
 from django.urls import reverse
 
 # Create your models here.
+
+
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -37,10 +39,10 @@ class Post(models.Model):
         return reverse('your_recipes')
 
 
-
 class Comment(models.Model):
-
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name='comments'
+        )
     name = models.CharField(max_length=80)
     email = models.EmailField()
     body = models.TextField()
