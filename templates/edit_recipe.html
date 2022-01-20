@@ -6,7 +6,7 @@
 
 {% if user.is_authenticated and user.id == post.author.id %}
 
-<h1> Edit Recipe </h1>
+<h1 class="h1 display-4 text-center mt-2"> Edit Recipe </h1>
 
 
 
@@ -15,7 +15,7 @@
         <form class="signup" id="add_recipe_form" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
-            <button class="btn btn-signup right" type="submit" value="Save">Update Recipe &raquo;</button>
+            <button class="btn btn-secondary right mb-2" type="submit" value="Save">Edit Recipe</button>
         </form>
     </div>
 </div>

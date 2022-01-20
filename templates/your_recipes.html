@@ -7,11 +7,9 @@
 
 {% if user.is_authenticated %}
 
-    <h1>Your Recipes </h1>
+    <h1 class="h1 display-2 text-center">Your Recipes </h1>
 
-    <div class=" row d-flex justify-content-center align-content-center "> <a href="{% url 'add_recipes' %}"
-            class="btn btn-primary col-3" style="margin-top: 1.3em;">Add Recipe</a> </div>
-
+    
     <div class="container-fluid">
         <div class="row">
 
@@ -29,9 +27,7 @@
                                     {% else %}
                                     <img class="card-img-top" src=" {{ post.image.url }}">
                                     {% endif %}
-                                    <div class="image-flash">
-                                        <p class="author">Author: {{ post.author }}</p>
-                                    </div>
+                                    
                                 </div>
                                 <a href="{% url 'post_detail' post.slug %}" class="post-link">
                                     <h2 class="card-title">{{ post.title }}</h2>
@@ -54,8 +50,10 @@
                 </div>
             </div>
         </div>
-
     </div>
+    <div class=" row d-flex justify-content-center align-content-center "> <a href="{% url 'add_recipes' %}"
+        class="btn btn-secondary col-3" style="margin-top: 1.3em;">Add Recipe</a> </div>
+
     {% if is_paginated %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">

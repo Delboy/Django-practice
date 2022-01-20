@@ -8,12 +8,19 @@ from .forms import CommentForm, RecipeForm
 
 # Create your views here.
 
+class HomeView(generic.ListView):
+    def get(self, request):
+        posts = Post.objects.filter(is_vegan=True)
+        paginate_by = 6
+        context = {
+            "posts": posts,
+        }
+        return render(request, 'index.html', context)
 
 class PostList(generic.ListView):
     model = Post
-    template_name = "index.html"
+    template_name = "recipes.html"
     paginate_by = 6
-
 
 
 class PostDetail(View):
@@ -79,7 +86,6 @@ class PostLike(View):
             post.likes.remove(request.user)
         else:
             post.likes.add(request.user)
-        
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
@@ -99,14 +105,7 @@ class UsersRecipeList(generic.ListView):
             return render(request, 'your_recipes.html')
 
 
-class VeganRecipeList(generic.ListView):
-    def get(self, request):
-        posts = Post.objects.filter(is_vegan=True)
-        paginate_by = 6
-        context = {
-            "posts": posts,
-        }
-        return render(request, 'vegan_recipes.html', context)
+
 
 
 class AddPostView(CreateView):
