@@ -63,11 +63,15 @@
             <h3 class="h3 display-6">Most loved Recipes</h3><br>
             <div class="lead">
                 <ol>
-                    {% for top_post in top_posts %}
+                    {% for top_post in top_posts|slice:":5" %}
+                    <a href="{% url 'post_detail' top_post.slug %}" class="post-link">
                         <li>{{ top_post.title}} by {{ top_post.author }}</li>
+                    </a>
                         <hr/>
                     {% endfor %}
                 </ol>
+                <p class="lead text-center">
+                    <a href="{% url 'recipes' %}" class="post-link">View all recipes</a></p>
                     
         </div>
             
