@@ -2,83 +2,106 @@
 
 {% block content %}
 
-<div class="container">
-<div class="row">
-    <div class="col-md-4 offset-md-5">
-        <h1 class="h1 display-1">Eat</h1>
-    </div>
-    <div class="col-md-4 offset-md-6">
-        <h1 class="h1 display-1">Me!</h1>
-    </div>
-    <div class="col-md-12 card">
-        <p class="lead text-center">A place to create and share your indulgent recipes!</p><hr/>
-    </div>
-</div>
-</div>
-<br>
-<div class="container">
-<div class="row gx-5">
-    <div class="col-md-6">
-        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-            </ol>
-            <h3 class="h3 display-6">Featured Recipes</h3><br>
-            <div class="carousel-inner">
-                {% for post in posts %}
-                {% if forloop.first %}
-                <div class="carousel-item active">
+<div class="container-fluid callout-container">
+        <!-- Callout -->
+        <div class="opaque-overlay">&nbsp;</div>
+        <div class="row">
+            <div class="col-12">
+                <section class="callout jumbotron text-center">
+                    <h1 class="jumbotron-header text-light">A place to create and share your indulgent recipes.</h1>
+                    <hr class="block-divider block-divider--orange">
+                    <p class="lead text-light">Sign up today to start sharing your creations with the world!</p>
+                    {% if user.is_authenticated %}
+                    <a class="nav-link" href="{% url 'recipes' %}"><button class="btn btn-dark">View Recipes</button></a>
                     {% else %}
-                    <div class="carousel-item">
-                        {% endif %}
-                        <a href="{% url 'post_detail' post.slug %}">
-                            {% if "placeholder" in post.image.url %}
-                            <img class="card-img-top"
-                                src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
-                            {% else %}
-                            <img src="{{ post.image.url }}" class="d-block w-100" alt="">
-                            {% endif %}
-                            <div class="carousel-caption d-md-block">
-                                <h5>{{ post.title }}</h5>
-                                <!-- <p>{{ post.description|safe }}</p> -->
-                                <p> by {{ post.author }}</p>
-                            </div>
-                        </a>
-                    </div>
-                    {% endfor %}
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                        <a class="nav-link" href="{% url 'account_signup' %}"><button class="btn btn-dark">Sign up!</button></a>
+                        <p class="text-muted"><small>By signing up you agree to our terms and service.</small></p>
+                    {% endif %}
+                    
+                </section>
             </div>
         </div>
-        <div class="col-md-6">
-            <h3 class="h3 display-6">Most loved Recipes</h3><br>
-            <div class="lead">
-                <ol>
-                    {% for top_post in top_posts|slice:":5" %}
-                    <a href="{% url 'post_detail' top_post.slug %}" class="post-link">
-                        <li>{{ top_post.title}} by {{ top_post.author }}</li>
-                    </a>
-                        <hr/>
-                    {% endfor %}
-                </ol>
-                <p class="lead text-center">
-                    <a href="{% url 'recipes' %}" class="post-link">View all recipes</a></p>
-                    
+        <!-- /.callout -->
+    </div>
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-5">
+            <h1 class="h1 display-1">Eat</h1>
         </div>
-            
+        <div class="col-md-4 offset-md-6">
+            <h1 class="h1 display-1">Me!</h1>
+        </div>
+        <div class="col-md-12 card">
+            <p class="lead text-center">A place to create and share your indulgent recipes!</p>
+            <hr />
+        </div>
+    </div>
+</div> -->
+<br>
+<div class="container">
+    <div class="row gx-5">
+        <div class="col-md-7">
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                </ol>
+                <h3 class="h3 display-6">Featured Recipes</h3><br>
+                <div class="carousel-inner">
+                    {% for post in posts %}
+                    {% if forloop.first %}
+                    <div class="carousel-item active">
+                        {% else %}
+                        <div class="carousel-item">
+                            {% endif %}
+                            <a href="{% url 'post_detail' post.slug %}">
+                                {% if "placeholder" in post.image.url %}
+                                <img class="card-img-top"
+                                    src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
+                                {% else %}
+                                <img src="{{ post.image.url }}" class="d-block w-100" alt="">
+                                {% endif %}
+                                <div class="carousel-caption d-md-block">
+                                    <h5>{{ post.title }}</h5>
+                                    <!-- <p>{{ post.description|safe }}</p> -->
+                                    <p> by {{ post.author }}</p>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <h3 class="h3 display-6">Most loved Recipes</h3><br>
+                <div class="lead">
+                    <ol>
+                        {% for top_post in top_posts|slice:":5" %}
+                        <a href="{% url 'post_detail' top_post.slug %}" class="post-link">
+                            <li>{{ top_post.title}} by {{ top_post.author }}</li>
+                        </a>
+                        <hr />
+                        {% endfor %}
+                    </ol>
+                    <p class="lead text-center">
+                        <a href="{% url 'recipes' %}" class="post-link">View all recipes</a>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-    
+<br>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
