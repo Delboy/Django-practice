@@ -10,30 +10,7 @@
                 <h1 class="post-title"> {{ post.title }}</h1>
                 <!-- Post author goes before the | the post's created date goes after -->
                 <p class="post-subtitle">by {{ post.author }} | {{ post.published_on }}</p>
-                <div class="col-1">
-                    <strong>
-                        {% if user.is_authenticated %}
-                        <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
-                            {% csrf_token %}
-                            {% if liked %}
-                        <button type="submit" name="blogpost_id" value="{{ post.slug }}" class="btn-like">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                        {% else %}
-                        <button type="submit" name="blogpost_id" value="{{ post.slug }}" class="btn-like">
-                        <i class="far fa-heart"></i></button>
-
-                            {% endif %}
-
-                        </form>
-
-                        {% else %}
-
-                        <span class="text-secondary"><i class="far fa-heart"></i></span>
-                        {% endif %}
-                        {{ post.number_of_likes }}
-                    </strong>
-                </div>
+                
             </div>
             <div class="d-md-block col-md-6 ">
                 <!-- The featured image URL goes in the src attribute -->
@@ -60,7 +37,30 @@
                 <p class="card-text ">{{ post.method | safe }}</p>
                 <div class="row">
 
-                    
+                    <div class="col-1">
+                        <strong>
+                            {% if user.is_authenticated %}
+                            <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
+                                {% csrf_token %}
+                                {% if liked %}
+                            <button type="submit" name="blogpost_id" value="{{ post.slug }}" class="btn-like">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            {% else %}
+                            <button type="submit" name="blogpost_id" value="{{ post.slug }}" class="btn-like">
+                            <i class="far fa-heart"></i></button>
+    
+                                {% endif %}
+    
+                            </form>
+    
+                            {% else %}
+    
+                            <span class="text-secondary"><i class="far fa-heart"></i></span>
+                            {% endif %}
+                            {{ post.number_of_likes }}
+                        </strong>
+                    </div>
                     <div class="col-1">
                         {% with comments.count as total_comments %}
                         <strong class="text-secondary"><i class="far fa-comments"></i>

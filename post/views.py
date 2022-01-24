@@ -3,6 +3,7 @@ from django.views import generic, View
 from django.views.generic import CreateView, UpdateView
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.db.models import Count
 from .models import Post
 from .forms import CommentForm, RecipeForm
 
@@ -11,9 +12,12 @@ from .forms import CommentForm, RecipeForm
 class HomeView(generic.ListView):
     def get(self, request):
         posts = Post.objects.filter(is_vegan=True)
+        # top_posts = Post.objects.filter(likes=True).order_by(len('likes'))
+        top_posts = Post.objects.annotate(like_count=Count('likes')).order_by('-like_count')
         paginate_by = 6
         context = {
             "posts": posts,
+            "top_posts": top_posts
         }
         return render(request, 'index.html', context)
 
@@ -139,3 +143,12 @@ def search_recipes(request):
         return render(request, 'search_recipes.html', {'searched': searched, 'posts':posts})
     else:
         return render(request, 'search_recipes.html')
+
+
+def top_recipes(request):
+    post = Post.objects.filter(liked=False)
+    context = {
+        post: 'post',
+        author: 'author'
+    }
+    return render(request, 'top_recipes.html', context)

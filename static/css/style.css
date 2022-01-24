@@ -129,7 +129,7 @@ body {
 }
 
 .btn-like {
-    color: #f8f9fa;
+    color: #ff0000;
     border: none;
     background: transparent;
     margin-left: 20px;
@@ -141,3 +141,8 @@ body {
     border: none;
     background: transparent;
     margin-left: 20px;
+}
+
+.logo {
+    font-size: 200%;
+}

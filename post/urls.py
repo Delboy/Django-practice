@@ -11,5 +11,4 @@ urlpatterns = [
     path('like/<slug:slug>', views.PostLike.as_view(), name="post_like"),
     path('edit_recipe/<int:pk>', views.UpdatePostView.as_view(), name="edit_recipe"),
     path('delete_recipe/<str:pk>', views.delete_recipe, name='delete_recipe'),
-    
 ]
