@@ -3,26 +3,28 @@
 {% block content %}
 
 <div class="container-fluid callout-container">
-        <!-- Callout -->
-        <div class="opaque-overlay">&nbsp;</div>
-        <div class="row">
-            <div class="col-12">
-                <section class="callout jumbotron text-center">
-                    <h1 class="jumbotron-header text-light">A place to create and share your indulgent recipes.</h1>
-                    <hr class="block-divider block-divider--orange">
-                    <p class="lead text-light">Sign up today to start sharing your creations with the world!</p>
-                    {% if user.is_authenticated %}
-                    <a class="nav-link" href="{% url 'recipes' %}"><button class="btn btn-dark">View Recipes</button></a>
-                    {% else %}
-                        <a class="nav-link" href="{% url 'account_signup' %}"><button class="btn btn-dark">Sign up!</button></a>
-                        <p class="text-muted"><small>By signing up you agree to our terms and service.</small></p>
-                    {% endif %}
-                    
-                </section>
-            </div>
+    <!-- Callout -->
+    <div class="opaque-overlay">&nbsp;</div>
+    <div class="row">
+        <div class="col-12">
+            <section class="callout jumbotron text-center">
+                <h1 class="jumbotron-header text-light">A place to create and share your indulgent recipes.</h1>
+                <hr class="block-divider block-divider--orange">
+                <p class="lead text-light">Sign up today to start sharing your creations with the world!</p>
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'recipes' %}"><button class="btn btn-dark">View Recipes</button></a>
+                {% else %}
+                <a class="nav-link" href="{% url 'account_signup' %}"><button class="btn btn-dark">Sign up!</button></a>
+                <p class="text-muted"><small>By signing up you agree to our terms and service.</small></p>
+                {% endif %}
+
+            </section>
         </div>
-        <!-- /.callout -->
     </div>
+    <!-- /.callout -->
+</div>
+
+
 
 <!-- <div class="container">
     <div class="row">
@@ -102,15 +104,64 @@
     </div>
 </div>
 <br>
+<!-- Features -->
+<div class="container-wrapper container-wrapper--red">
+    <div class="container features-container content-container">
+        <section class="features">
+            <div class="row">
+                <div class="col-12 page-header">
+                    <h3 class="h3 display-6">Features:</h2>
+                        <hr class="block-divider block-divider--short block-divider--white">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="feature">
+                        <h2 class="feature-head"><i class="fas fa-globe"></i> Discover</h2>
+                        <p>Explore and discover delicious new recipes from users all across the globe.</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <img src="https://ichef.bbci.co.uk//food/ic/food_16x9_1600/recipes/great_sausage_casserole_73010_16x9.jpg"
+                        class="img-fluid" alt="Responsive image">
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <img src="https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/teriyakichicken_85358_16x9.jpg"
+                            class="img-fluid" alt="Responsive image">
+                    </div>
+                    <div class="col-6">
+                        <div class="feature">
+                            <h2 class="feature-head"><i class="fas fa-heart"></i> Love</h2>
+                            <p>Once you've found your favourite recipes, love them to keep them stored forever to come
+                                back to time and time again.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="feature">
+                            <h2 class="feature-head"><i class="fas fa-apple-alt"></i> Create</h2>
+                            <p>Create and share your own something recipes with the world!
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <img src="https://ichef.bbci.co.uk//food/ic/food_16x9_1600/recipes/darkcherryandhazelnu_92470_16x9.jpg"
+                            class="img-fluid" alt="Responsive image">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
+        <br><br>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+        </script>
 
-    {% endblock %}
+        {% endblock %}
