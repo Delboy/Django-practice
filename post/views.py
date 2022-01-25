@@ -12,7 +12,6 @@ from .forms import CommentForm, RecipeForm
 class HomeView(generic.ListView):
     def get(self, request):
         posts = Post.objects.filter(is_vegan=True)
-        # top_posts = Post.objects.filter(likes=True).order_by(len('likes'))
         top_posts = Post.objects.annotate(like_count=Count('likes')).order_by('-like_count')
         paginate_by = 6
         context = {
@@ -93,6 +92,19 @@ class PostLike(View):
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
+class UsersFavRecipes(generic.ListView):
+    def get(self, request):
+        if request.user.is_authenticated:
+            posts = Post.objects.filter(likes=request.user.id)
+            
+            context = {
+                "posts": posts,
+            }
+            paginate_by = 6
+            return render(request, 'favourite_recipes.html', context)
+        else:
+            
+            return render(request, 'favourite_recipes.html')
 
 
 class UsersRecipeList(generic.ListView):
@@ -107,9 +119,6 @@ class UsersRecipeList(generic.ListView):
         else:
             
             return render(request, 'your_recipes.html')
-
-
-
 
 
 class AddPostView(CreateView):
