@@ -16,7 +16,7 @@ class HomeView(generic.ListView):
         paginate_by = 6
         context = {
             "posts": posts,
-            "top_posts": top_posts
+            "top_posts": top_posts,
         }
         return render(request, 'index.html', context)
 

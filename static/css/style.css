@@ -163,3 +163,7 @@ body {
 .feature-head {
     margin-top: 100px;
 }
+
+.btm-brd {
+    border-bottom: 1px solid black 
+}
