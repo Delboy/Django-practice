@@ -61,7 +61,20 @@
                     <li>
                         <a class="nav-link" href="{% url 'recipes' %}">All Recipes</a>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li class= font-italic>
+                        <a class="nav-link float-right" href="{% url 'your_recipes' %}"><span class= font-italic>Logged in as {{ user|title }}</span></a>
+                    </li>
+                    {% endif %}
                 </ul>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li>
+                            <a class="nav-link" href="{% url 'recipes' %}">TEST</a>
+                        </li>
+                    </ul>
+
+                    </div>
                 <form class="d-flex" method=POST action="{% url 'search_recipes' %}">
 
                     {% csrf_token %}

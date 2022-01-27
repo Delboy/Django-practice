@@ -121,7 +121,6 @@ class UsersRecipeList(generic.ListView):
             return render(request, 'your_recipes.html')
 
 
-<<<<<<< HEAD
 class UsersFavRecipes(generic.ListView):
     def get(self, request):
         posts = Post.objects.filter(likes=request.user.id)
@@ -136,8 +135,6 @@ class UsersFavRecipes(generic.ListView):
 
 
 
-=======
->>>>>>> 13f1fb817a1cf55e6c2b1658686b3abdf4b180d6
 class AddPostView(CreateView):
     model = Post
     form_class = RecipeForm
