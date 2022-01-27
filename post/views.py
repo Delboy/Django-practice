@@ -92,6 +92,19 @@ class PostLike(View):
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
+class UsersFavRecipes(generic.ListView):
+    def get(self, request):
+        if request.user.is_authenticated:
+            posts = Post.objects.filter(likes=request.user.id)
+            
+            context = {
+                "posts": posts,
+            }
+            paginate_by = 6
+            return render(request, 'favourite_recipes.html', context)
+        else:
+            
+            return render(request, 'favourite_recipes.html')
 
 
 class UsersRecipeList(generic.ListView):
@@ -108,6 +121,7 @@ class UsersRecipeList(generic.ListView):
             return render(request, 'your_recipes.html')
 
 
+<<<<<<< HEAD
 class UsersFavRecipes(generic.ListView):
     def get(self, request):
         posts = Post.objects.filter(likes=request.user.id)
@@ -122,6 +136,8 @@ class UsersFavRecipes(generic.ListView):
 
 
 
+=======
+>>>>>>> 13f1fb817a1cf55e6c2b1658686b3abdf4b180d6
 class AddPostView(CreateView):
     model = Post
     form_class = RecipeForm

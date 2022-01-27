@@ -7,7 +7,11 @@
 
 {% if user.is_authenticated %}
 
+<<<<<<< HEAD
     <h1 class="h1 display-2 text-center">Favourite Recipes </h1>
+=======
+    <h1 class="h1 display-4 text-center mt-2">Favourite Recipes </h1>
+>>>>>>> 13f1fb817a1cf55e6c2b1658686b3abdf4b180d6
 
     
     <div class="container-fluid">
@@ -34,6 +38,7 @@
                                     <p class="card-text">{{ post.description|safe }}</p>
                                 </a>
                                 <hr />
+<<<<<<< HEAD
                                 <a href="{% url 'edit_recipe' post.id %}"><button>Edit</button></a>
                                 <a href="{% url 'delete_recipe' post.id %}">
                                     <button type="submit" onclick="return confirm(
@@ -41,6 +46,9 @@
                                         )">Delete
                                     </button>
                                 </a>
+=======
+                                
+>>>>>>> 13f1fb817a1cf55e6c2b1658686b3abdf4b180d6
 
 
                             </div>

@@ -10,10 +10,11 @@
             <section class="callout jumbotron text-center">
                 <h1 class="jumbotron-header text-light">A place to create and share your indulgent recipes.</h1>
                 <hr class="block-divider block-divider--orange">
-                <p class="lead text-light">Sign up today to start sharing your creations with the world!</p>
                 {% if user.is_authenticated %}
+                <p class="lead text-light"> Welcome back {{ user | title }}
                 <a class="nav-link" href="{% url 'recipes' %}"><button class="btn btn-dark">View Recipes</button></a>
                 {% else %}
+                <p class="lead text-light">Sign up today to start sharing your creations with the world!</p>
                 <a class="nav-link" href="{% url 'account_signup' %}"><button class="btn btn-dark">Sign up!</button></a>
                 <p class="text-muted"><small>By signing up you agree to our terms and service.</small></p>
                 {% endif %}
